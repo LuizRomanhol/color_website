@@ -1,16 +1,37 @@
 <head>
     <link rel="stylesheet" href="static/css/styles.css">    
 </head>
-<body>
-	<form method="post" enctype="multipart/form-data">
-	  <label for="img">Select image:</label>
-	  <input type="file" id="img" name="img" accept="image/*">
-	  <input type="submit" value="submit">
-	</form>    
-	<img src={{imgpath}} width="500"> 
-	<img src={{points}} width="500"> 
-	<img src={{result}} width="500"> 
-	 <a href={{result}} download>
-        <button>Download</button>
-    </a>
+<body class="side-by-side">
+	<div class="">
+		<div class="frame">
+			<form method="post" enctype="multipart/form-data">
+				<label for="img">Upload da imagem com a cartela</label><br><br>
+				<input type="file" id="img" name="img" accept="image/*">
+				<input type="submit" value="submit">
+			</form>    
+			<div class = {{hidden}}>
+			<p>
+				Imagem original
+			</p>
+			<img src={{imgpath}} class = "image"> 
+			</div>
+		</div>
+		<div class="frame {{hidden}}">
+			<p>
+				Detecção dos pontos de referência
+			</p>
+			<img src={{points}} class = "image"> 
+		</div>
+	</div>
+	<div class="frame {{hidden}}">
+		<p>
+			Resultado
+		</p>
+		<img src={{result}} class = "image"> 		
+		<a href={{result}} download>
+			<p>
+   		    	<button>Download</button>
+   		    </p>
+    	</a>
+    </div>
 </body>

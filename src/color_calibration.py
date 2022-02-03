@@ -130,8 +130,8 @@ def calibrate(img,pallete_coords,radius=5):
 def draw_circles(img, coords):
 	#radius = int(img.shape[0]*0.025)
 	#color = (255, 0, 0)
-	#thickness = int(img.shape[0]*0.01)
+	thickness = int(img.shape[0]*0.025)
 	for coord in coords:
-		img = cv2.circle(img, coord, radius=0, color=(0,255,255), thickness=20)        
+		img = cv2.circle(img, coord, radius=0, color=(0,255,255), thickness=thickness)        
 	return img
 	
