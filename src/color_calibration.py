@@ -15,26 +15,25 @@ def get_region_mean(img,point,radius):
     r, g, b = [int(rsquare.mean()),int(gsquare.mean()),int(bsquare.mean())]
     return (r,g,b)
 
-def white_balance(img,x,y,radius):
+def white_balance(ref,img,x,y,radius):
 
     total = np.array([0,0,0])
     arr = [2,3]
     for i in arr:
-        total = total + get_region_mean(img,(x[i],y[i]),radius)
+        total = total + get_region_mean(ref,(x[i],y[i]),radius)
     
-    #grey = [((total/len(x)).mean())]*3
     grey = [((total/len(arr)).mean())]*3
     delta = (grey - total/len(arr)).astype(int)
     
     return np.clip(img.astype(int) + delta,0,255).astype('uint8')
 
-def intensity_adjust(img,x,y,radius):
+def intensity_adjust(ref,img,x,y,radius):
     graytones = [243,200,161,120,85,52]
     gray = []
     print(x,graytones,y)
 
     for i in range(len(x)):
-        gray.append(int(np.array(get_region_mean(img,(x[i],y[i]),radius)).mean()))
+        gray.append(int(np.array(get_region_mean(ref,(x[i],y[i]),radius)).mean()))
     
     z = np.polyfit(gray,graytones,3)
     p = np.poly1d(z)
@@ -117,19 +116,18 @@ def get_coords(image_path, template_path, template_coords,show = False):
 
     return pallete_coords
  	
-def calibrate(img,pallete_coords,radius=5):
+def calibrate(ref,imgs,pallete_coords,radius=5):
 	x = []
 	y = []
 	for xy in pallete_coords:
 		x.append(xy[0])
 		y.append(xy[1])
-	img = white_balance(img,x,y,radius)
-	img = intensity_adjust(img,x,y,radius)
-	return img
+	for i in range(len(imgs)):
+		imgs[i] = white_balance(ref,imgs[i],x,y,radius)
+		imgs[i] = intensity_adjust(ref,imgs[i],x,y,radius)
+	return imgs
  	
 def draw_circles(img, coords):
-	#radius = int(img.shape[0]*0.025)
-	#color = (255, 0, 0)
 	thickness = int(img.shape[0]*0.025)
 	for coord in coords:
 		img = cv2.circle(img, coord, radius=0, color=(0,255,255), thickness=thickness)        

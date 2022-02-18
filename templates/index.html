@@ -5,33 +5,42 @@
 	<div class="">
 		<div class="frame">
 			<form method="post" enctype="multipart/form-data">
-				<label for="img">Upload da imagem com a cartela</label><br><br>
-				<input type="file" id="img" name="img" accept="image/*">
+				<label for="ref">Upload da imagem com a cartela de referência.</label><br><br>
+				<input type="file" id="ref" name="ref" accept="image/*">
+				<br><br>
+				<label for="imgs">Upload das imagens a serem calibradas.</label><br><br>
+				<input multiple type="file" id="imgs" name="imgs" accept="image/*" >
 				<input type="submit" value="submit">
 			</form>    
+			<!--
 			<div class = {{hidden}}>
 			<p>
 				Imagem original
 			</p>
-			<img src={{imgpath}} class = "image"> 
+			<img src={{refpath}} class = "image"> 
 			</div>
+			-->
 		</div>
 		<div class="frame {{hidden}}">
 			<p>
-				Detecção dos pontos de referência
+				Detecção dos pontos da paleta.
 			</p>
 			<img src={{points}} class = "image"> 
 		</div>
 	</div>
 	<div class="frame {{hidden}}">
 		<p>
-			Resultado
+			Imagens calibradas
 		</p>
-		<img src={{result}} class = "image"> 		
-		<a href={{result}} download>
-			<p>
-   		    	<button>Download</button>
-   		    </p>
+		<div style="display:inline-block; vertical-align: top; max-width:100%">
+			{%for result in results%} 			
+				<a href={{result[13:]}} download>
+				<div style="display:inline-block; vertical-align: top;">
+				<img src={{result[13:]}} class = "minimg"><br>
+				</div>		
+				</a>	
+			{%endfor%}
+		</div>
     	</a>
     </div>
 </body>
