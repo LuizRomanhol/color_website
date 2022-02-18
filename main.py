@@ -1,6 +1,4 @@
-from datetime import MAXYEAR
 from flask import Flask, render_template, request, redirect, url_for
-from sqlalchemy.sql import func
 from flask import session
 import numpy as np
 import cv2
