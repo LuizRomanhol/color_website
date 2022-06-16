@@ -1,46 +1,56 @@
 <head>
-    <link rel="stylesheet" href="static/css/styles.css">    
+    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body class="side-by-side">
-	<div class="">
-		<div class="frame">
-			<form method="post" enctype="multipart/form-data">
-				<label for="ref">Upload da imagem com a cartela de referência.</label><br><br>
-				<input type="file" id="ref" name="ref" accept="image/*">
-				<br><br>
-				<label for="imgs">Upload das imagens a serem calibradas.</label><br><br>
-				<input multiple type="file" id="imgs" name="imgs" accept="image/*" >
-				<input type="submit" value="submit">
-			</form>    
+    <div></div>
+	<div>
+		<div class="frame thin" name="main_window">
+		    <p class="upper_title">color_calibrator</p>
+			<form method="post" enctype="multipart/form-data" style="display:flex; flex-direction:column;">
+				<label for="ref" class="pseudo_button">Escolher cartela.</label>
+				<input type="file" id="ref" name="ref" accept="image/*" style="display: none;">
+				<label for="imgs" class="pseudo_button">Escolher imagens</label>
+				<input multiple type="file" id="imgs" name="imgs" accept="image/*" style="display: none;">
+				<label for="send_form" class="pseudo_button send_button"> Enviar </label>
+				<input name="send_form" id="send_form" type="submit" value="submit" style="display: none;>
+			</form>
 			<!--
 			<div class = {{hidden}}>
 			<p>
 				Imagem original
 			</p>
-			<img src={{refpath}} class = "image"> 
+			<img src={{refpath}} class = "image">
 			</div>
-			-->
-		</div>
-		<div class="frame {{hidden}}">
-			<p>
-				Detecção dos pontos da paleta.
-			</p>
-			<img src={{points}} class = "image"> 
 		</div>
 	</div>
-	<div class="frame {{hidden}}">
-		<p>
-			Imagens calibradas
-		</p>
-		<div style="display:inline-block; vertical-align: top; max-width:100%">
-			{%for result in results%} 			
-				<a href={{result[13:]}} download>
-				<div style="display:inline-block; vertical-align: top;">
-				<img src={{result[13:]}} class = "minimg"><br>
-				</div>		
-				</a>	
-			{%endfor%}
-		</div>
-    	</a>
+	<div class="stacked {{hidden}}" ><center>
+    	<div class="frame {{hidden}}" style="width:fit-content; height:fit-content;">
+    		<p class="upper_title">
+    			detecção da paleta
+    		</p>
+    		<img src={{points}} class = "squared_img">
+    		<br>
+    	</div>
+    	<br><br>
+    	<div class="frame {{hidden}}" style="width:fit-content">
+    		<p class="upper_title">
+    			imagens calibradas
+    		</p>
+    		<div style="display:inline-block; vertical-align: top; max-width:100%">
+    			{%for result in results%}
+    				<a href={{result[13:]}} download>
+    				<div style="display:inline-block; vertical-align: top;">
+    				<img src={{result[13:]}} class = "minimg"><br>
+    				</div>
+    				</a>
+    			{%endfor%}
+    		</div>
+        	</a>
+        <br>
+        </div>
     </div>
+    <div></div></center>
 </body>
