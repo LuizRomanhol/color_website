@@ -1,7 +1,8 @@
 body {
-	background-image: linear-gradient(to right, #333d39 , #1d2622);
+	background-image: linear-gradient(to right, rgb(100,100,100) , rgb(200,200,200));
 	background-position: center;
-	font-family: 'Lexend Deca', sans-serif 12px;
+	font-family: 'Lexend Deca', sans-serif;
+	font-size: 16px;
 	overflow: hidden;
     display:flex;
 	align-items: center;
@@ -10,19 +11,74 @@ body {
 	width:100%;
 	height:100%;
 }
+
+.upper_title{
+    margin-top:-28px;
+    color:black;
+    height:12px;
+}
+
+input{
+    display:none;
+}
+a{
+    text-decoration:none;
+}
+.logo{
+    opacity: 1.0;
+}
+
 .stacked{
     flex-direction:column;
+}
+
+p{
+    padding:0px;
 }
 
 .frame{
 	text-align: center;
 	background-color: white;
-	margin: 8px;
-	border: 2px solid white;
-	border-radius: 8px;
-	padding: 12px;
-	width: 500px;
-	max-height: 500px;
+	border-radius: 6px;
+	padding: 6px;
+	max-height: 500px
+	width:fit-content;
+    height:fit-content;
+    display:flex;
+    flex-direction:column;
+}
+
+.thin{}
+
+.squared_img{
+  width:300px;
+  height:auto;
+  object-fit:cover;
+  max-height:400px;
+}
+
+.pseudo_button{
+    background-color:rgb(120,207,167);
+    color: white;
+    border-radius:6px;
+    padding:6px;
+	margin:6px;
+
+}
+
+.send_button{
+    background-color:white;
+    color: black;
+    border: 2px rgb(200,200,200) solid
+	margin:4px;
+}
+
+
+.pseudo_button:hover{
+    background-color:white;
+    color: black;
+    border: 2px black solid;
+    padding:4px;
 }
 
 .hidden{
@@ -31,10 +87,12 @@ body {
 
 .image{
 	max-width: 100%;
-    max-height: 325px;
+    max-height: 300px;
 }
 
 .minimg{
-    max-height: 125px;
-    margin: 4px;
+    margin:1px;
+    width:125px;
+    height:125px;
+    object-fit:cover;
 }
